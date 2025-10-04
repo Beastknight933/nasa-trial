@@ -1,7 +1,7 @@
 will need microsoft c++ build tools download from here "https://visualstudio.microsoft.com/visual-cpp-build-tools/"
 > ⚡ Navigate to project subfolder - `cd Nasa-Biology-Engine--main`
 > ⚡ Navigate to subfolder Bioverse - `cd Bioverse`
-> ⚡ Run `pip install -r requirements.txt` before starting.
+> ⚡ Run `pip install -r backend/requirements.txt` before starting.
 
 ---
 
