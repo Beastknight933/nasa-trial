@@ -1,3 +1,5 @@
+> ⚡ Navigate to project subfolder - `cd Nasa-Biology-Engine--main`
+> ⚡ Navigate to subfolder Bioverse - `cd Bioverse`
 > ⚡ Run `pip install -r requirements.txt` before starting.
 
 ---

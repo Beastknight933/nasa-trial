@@ -1,20 +1,40 @@
 from transformers import pipeline
+import os
+from pathlib import Path
 
-# Initialize summarizer once
+# Initialize summarizer once with local cache
 try:
-    summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+    # Set cache directory to your project
+    cache_dir = Path("models/bart-large-cnn")
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    
+    summarizer = pipeline(
+        "summarization", 
+        model="facebook/bart-large-cnn",
+        model_kwargs={"cache_dir": str(cache_dir)}
+    )
+    print("✅ Summarization model loaded successfully")
 except Exception as e:
-    print("⚠️ Could not load summarization model:", e)
+    print(f"⚠️ Could not load summarization model: {e}")
+    print("⚠️ Using fallback truncation instead")
     summarizer = None
 
 def summarize_text(text: str, max_len: int = 120, min_len: int = 30) -> str:
     """
     Summarize text using pretrained model.
+    Falls back to truncation if model unavailable.
     """
-    if not summarizer or not text.strip():
-        return text[:500]  # fallback: return truncated text
+    if not text or not text.strip():
+        return "No content available to summarize."
+    
+    if not summarizer:
+        return text[:500] + "..." if len(text) > 500 else text
 
     try:
+        # Only summarize if text is long enough
+        if len(text) < 100:
+            return text
+            
         result = summarizer(
             text,
             max_length=max_len,
@@ -23,6 +43,5 @@ def summarize_text(text: str, max_len: int = 120, min_len: int = 30) -> str:
         )
         return result[0]["summary_text"]
     except Exception as e:
-        print("Summarization failed:", e)
-        return text[:500]
-
+        print(f"❌ Summarization failed: {e}")
+        return text[:500] + "..." if len(text) > 500 else text
