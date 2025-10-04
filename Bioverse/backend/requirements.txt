@@ -9,7 +9,7 @@ torch==2.8.0
 sentencepiece==0.2.0  # Required by some transformers models
 
 # HTTP Requests
-requests==2.32.3
+requests==2.32.5
 
 # Optional but recommended for production
 python-multipart==0.0.12  # For file uploads if needed later
