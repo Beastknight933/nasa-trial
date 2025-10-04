@@ -6,7 +6,7 @@ def load_data():
     Load preprocessed NASA bio data from JSON file.
     Validates and cleans data to prevent null-related issues.
     """
-    data_path = Path("data/nasa_bio_data.json")
+    data_path = Path("../data/nasa_bio_data.json")
     
     if not data_path.exists():
         print(f"⚠️ Warning: Data file not found at {data_path.resolve()}")
