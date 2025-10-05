@@ -1,18 +1,10 @@
-import { useState } from 'react';
-import LoadingScreen from './components/LoadingScreen';
-import HomePage from './components/HomePage';
+import HomePage from "./components/HomePage";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
-    <>
-      {isLoading ? (
-        <LoadingScreen onComplete={() => setIsLoading(false)} />
-      ) : (
-        <HomePage />
-      )}
-    </>
+    <div>
+      <HomePage />
+    </div>
   );
 }
 
